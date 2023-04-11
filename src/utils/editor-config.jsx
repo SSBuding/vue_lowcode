@@ -18,8 +18,8 @@ export const registerConfig = createEditorConfig()
 
 registerConfig.register({
   label:'文本',
-  preview:()=>'yulan',
-  render:()=>'zhenshi',
+  preview:()=>'预览文字',
+  render:()=>'渲染文字',
   key:'text'
 })
 
@@ -31,7 +31,7 @@ registerConfig.register({
 })
 registerConfig.register({
   label:'按钮',
-  preview:()=>(<ElInput placeholder='文本'></ElInput>),
-  render:()=>(<ElInput placeholder='文本'></ElInput>),
+  preview:()=>(<ElInput placeholder='文本预览'></ElInput>),
+  render:()=>(<ElInput placeholder='文本渲染'></ElInput>),
   key:'input'
 })

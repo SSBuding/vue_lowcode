@@ -1,4 +1,4 @@
-import { defineComponent,inject,computed } from "vue";
+import { defineComponent,inject,computed,onMounted,ref } from "vue";
 
 export default defineComponent({
   props:{
@@ -14,9 +14,22 @@ export default defineComponent({
     const component = config.componentMap[props.block.key]
    
     const RenderComponent = component.render()
+
+    const blockRef = ref(null)
+    onMounted(()=>{
+      let {offsetWidth,offsetHeight} = blockRef.value
+      if(props.block.alignCenter){
+        props.block.left = props.block.left - offsetWidth/2
+        props.block.top = props.block.top - offsetHeight/2
+        props.block.alignCenter=false
+      }
+      props.block.width = offsetWidth
+      props.block.height = offsetHeight
+    })
+
     return ()=>  
   (
-    <div class='editor-block' style={blockStyle.value}>
+    <div class='editor-block' style={blockStyle.value} ref={blockRef}>
       {RenderComponent}
     </div>
     )
